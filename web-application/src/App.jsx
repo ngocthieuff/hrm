@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
+import jwt_decode from "jwt-decode"
 import './App.css';
 
 function App() {
 
   function handleCallbackResponse(response) {
     console.log('response', response.credential)
+    let usedObj = jwt_decode(response.credential)
+    console.log('usedObj', usedObj)
   }
 
   useEffect(() => {
@@ -18,6 +21,8 @@ function App() {
       document.getElementById('signInDiv'),
       { theme: 'outline', size: 'large'}
     )
+
+    google.accounts.id.prompt()
   }, [])
 
   return (
