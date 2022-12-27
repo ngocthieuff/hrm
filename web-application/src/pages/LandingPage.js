@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import jwt_decode from "jwt-decode"
-import './App.css';
-import { LoadedList } from './pages/LoadedList';
-import { LandingPage } from './pages/LandingPage';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+export function LandingPage() {
 
   function handleCallbackResponse(response) {
     console.log('response', response.credential)
@@ -29,13 +25,19 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/list" element={<LoadedList />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        <img src="/logo.png" className="App-logo" alt="logo" />
+        <div id='signInDiv'></div>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
-
-export default App;
