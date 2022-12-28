@@ -1,3 +1,15 @@
+import ItemList from '../components/Item'
+import configureStore from '../stores/configureStore';
+import { Provider } from 'react-redux';
+
 export function LoadedList() {
-    return <p>Loaded list</p>
+    const store = configureStore();
+
+    return <>
+        <p>Ngocccccc</p>
+        <Provider store={store}>
+
+        <ItemList />
+        </Provider>
+    </>
 }

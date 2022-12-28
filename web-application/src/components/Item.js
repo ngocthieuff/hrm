@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import { itemsFetchData } from '../actions/items';
-import * as reducers from '../reducers/items';
+import { itemsFetchData } from '../actions/item';
+import PropTypes from 'prop-types';
 
 class ItemList extends Component {
     componentDidMount() {
@@ -44,7 +44,6 @@ var setDistanceBetweenItems = {
 };
 
 ItemList.propTypes = {
-    fetchData: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
     hasError: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired
@@ -59,14 +58,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    console.log('dispatch', dispatch);
     return {
         fetchData: (url) => dispatch(itemsFetchData(url))
     };
 };
-
-Object.values(mapStateToProps(reducers)).forEach((func) => {
-    console.log('result:', func(false, {}))
-})
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
