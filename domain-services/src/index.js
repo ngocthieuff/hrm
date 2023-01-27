@@ -1,4 +1,6 @@
 const express = require('express')
+const cookieParser = require('cookie-parser')
+
 const groceriesRoute = require('./routes/groceris')
 const marketsRoute = require('./routes/markets')
 
@@ -7,6 +9,8 @@ const PORT = 3001
 
 app.use(express.json())
 app.use(express.urlencoded())
+app.use(cookieParser())
+
 /*
 express.json() is a method inbuilt in express to 
 recognize the incoming Request Object as a JSON Object. 
