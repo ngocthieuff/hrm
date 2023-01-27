@@ -1,4 +1,5 @@
 const express = require('express')
+const groceriesRoute = require('./routes/groceris')
 
 const app = express()
 const PORT = 3001
@@ -23,51 +24,7 @@ app.use((req, res, next) => {
     next()
 })
 
-app.listen(PORT, () => console.log(`running express server on PORT ${PORT}`))
+app.use('/api/v1/groceries', groceriesRoute)
+// http://localhost:3001/api/v1/groceries/milk
 
-const groceries = [
-    {
-        item: 'ngoc',
-        quantity: 1
-    }, 
-    {
-        item: 'milk',
-        quantity: 9
-    }
-]
-
-// app.get('/groceries', 
-//     (req, res, next) => {
-//         console.log('before handling request')
-//         next()
-//     }, 
-//     (req, res, next) => {
-//         res.send(groceries)
-//         next()
-//     },
-//     () => {
-//         console.log('Finished')
-//     }
-// )
-
-app.get('/groceries',
-    (req, res, next) => {
-        res.send(groceries)
-        next()
-    }
-)
-
-app.post('/groceries', (req, res) => {
-    console.log(req.body)
-    res.send(201)
-})
-
-app.get('/ab*cd', (req, res) => {
-    res.send('ab*cd')
-  })
-
-app.get('/items/:item', (req, res) => {
-    const { item } = req.params
-    const groceryItem = groceries.find((g) => g.item == item)
-    res.send(groceryItem)
-})
+app.listen(PORT, () => console.log(`Running Express Server on port ${PORT}`))
