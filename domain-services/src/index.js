@@ -1,5 +1,6 @@
 const express = require('express')
 const groceriesRoute = require('./routes/groceris')
+const marketsRoute = require('./routes/markets')
 
 const app = express()
 const PORT = 3001
@@ -26,5 +27,6 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/groceries', groceriesRoute)
 // http://localhost:3001/api/v1/groceries/milk
+app.use('/api/v1/markets', marketsRoute);
 
 app.listen(PORT, () => console.log(`Running Express Server on port ${PORT}`))
